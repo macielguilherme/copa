@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&amp;family=Lexend:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#112000",
+                        "secondary-fixed-dim": "#94d3c1",
+                        "on-primary": "#203600",
+                        "surface-variant": "#353535",
+                        "surface-container-high": "#2a2a2a",
+                        "inverse-surface": "#e2e2e2",
+                        "outline-variant": "#414a35",
+                        "surface-tint": "#8fdb00",
+                        "outline": "#8b947b",
+                        "on-tertiary": "#2f3131",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "primary-fixed-dim": "#8fdb00",
+                        "tertiary-container": "#e2e2e2",
+                        "tertiary": "#ffffff",
+                        "on-surface-variant": "#c1caae",
+                        "on-primary-container": "#476f00",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "on-error": "#690005",
+                        "secondary-container": "#0b5345",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "surface-container-highest": "#353535",
+                        "on-secondary": "#00382e",
+                        "on-tertiary-container": "#636565",
+                        "secondary-fixed": "#afefdd",
+                        "primary-fixed": "#a8f928",
+                        "surface-bright": "#393939",
+                        "on-error-container": "#ffdad6",
+                        "secondary": "#94d3c1",
+                        "on-background": "#e2e2e2",
+                        "error": "#ffb4ab",
+                        "surface": "#131313",
+                        "error-container": "#93000a",
+                        "on-secondary-container": "#86c5b3",
+                        "tertiary-fixed": "#e2e2e2",
+                        "surface-dim": "#131313",
+                        "on-secondary-fixed-variant": "#065043",
+                        "on-secondary-fixed": "#00201a",
+                        "inverse-primary": "#426900",
+                        "surface-container": "#1f1f1f",
+                        "surface-container-low": "#1b1b1b",
+                        "on-primary-fixed-variant": "#314f00",
+                        "inverse-on-surface": "#303030",
+                        "primary-container": "#a8f928",
+                        "background": "#131313",
+                        "primary": "#ffffff",
+                        "on-surface": "#e2e2e2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "40px",
+                        "gutter": "16px",
+                        "base": "4px",
+                        "md": "24px",
+                        "sm": "16px",
+                        "xs": "8px",
+                        "xl": "64px",
+                        "margin": "20px"
+                    },
+                    "fontFamily": {
+                        "display-xl": ["Space Grotesk"],
+                        "headline-lg": ["Space Grotesk"],
+                        "body-lg": ["Lexend"],
+                        "count-xl": ["Space Grotesk"],
+                        "headline-md": ["Space Grotesk"],
+                        "label-sm": ["Lexend"],
+                        "body-md": ["Lexend"]
+                    },
+                    "fontSize": {
+                        "display-xl": ["80px", { "lineHeight": "72px", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+                        "headline-lg": ["40px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "26px", "fontWeight": "400" }],
+                        "count-xl": ["32px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #ADFF2F;
+        }
+
+        .brutal-border {
+            border: 2px solid #ADFF2F;
+        }
+
+        .brutal-shadow {
+            box-shadow: 4px 4px 0px 0px #ADFF2F;
+        }
+
+        .sticker-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 16px;
+        }
+    </style>
+    <style>
+        body {
+            min-height: 100dvh;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background text-on-background font-body-md custom-scrollbar selection:bg-primary-container selection:text-on-primary-container">
+    <!-- TopAppBar -->
+    <header
+        class="bg-black/80 backdrop-blur-md fixed top-0 left-0 z-50 flex justify-between items-center w-full px-4 h-20 border-b-2 border-[#ADFF2F]">
+        <div class="flex items-center gap-4">
+            <h1 class="font-['Space_Grotesk'] font-black uppercase tracking-tighter text-2xl italic text-[#ADFF2F]">
+                Minhas Figurinhas</h1>
+        </div>
+    </header>
+    <main class="pt-24 pb-12 px-4 max-w-7xl mx-auto space-y-lg">
+        <!-- Simple Progress Tracker -->
+        <section class="bg-surface-container p-sm border-2 border-[#ADFF2F] brutal-shadow">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-sm">
+                <div class="space-y-base">
+                    <p class="font-headline-md text-label-sm uppercase tracking-widest text-[#ADFF2F]">PROGRESSO DA
+                        COLEÇÃO</p>
+                    <div class="flex items-baseline gap-xs">
+                        <h2 class="font-display-xl text-headline-lg" id="progressPercent">0%</h2>
+                        <p class="font-body-md text-white/60" id="progressText">0 / 0 colecionadas</p>
+                    </div>
+                </div>
+                <div class="w-full md:w-64 h-3 bg-surface-container-highest rounded-full overflow-hidden">
+                    <div class="h-full bg-[#ADFF2F]" id="progressFill" style="width: 0%"></div>
+                </div>
+            </div>
+        </section>
+        <!-- Search & Filter Bar -->
+        <section class="flex flex-col md:flex-row gap-gutter">
+            <div class="relative flex-grow">
+                <span
+                    class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline">search</span>
+                <input id="searchInput"
+                    class="w-full bg-surface-container border-b-2 border-white focus:border-[#ADFF2F] outline-none py-4 pl-12 pr-4 font-headline-md text-label-sm uppercase placeholder:text-outline transition-colors"
+                    placeholder="BUSCAR JOGADOR OU CODIGO..." type="text" />
+            </div>
+            <div class="flex gap-xs">
+                <button id="missingFilterBtn"
+                    class="bg-surface-container border-2 border-white px-6 py-4 font-headline-md text-label-sm uppercase hover:bg-[#ADFF2F] hover:text-black transition-all">FALTANDO</button>
+                <button id="foilFilterBtn"
+                    class="bg-surface-container border-2 border-white px-6 py-4 font-headline-md text-label-sm uppercase hover:bg-[#ADFF2F] hover:text-black transition-all">ESPECIAIS</button>
+                <button id="clearFiltersBtn"
+                    class="bg-surface-container border-2 border-white px-6 py-4 font-headline-md text-label-sm uppercase hover:bg-[#ADFF2F] hover:text-black transition-all">LIMPAR</button>
+                <button id="resetAlbumBtn"
+                    class="bg-surface-container border-2 border-red-500 text-red-400 px-6 py-4 font-headline-md text-label-sm uppercase hover:bg-red-600 hover:text-white transition-all">RESETAR</button>
+            </div>
+        </section>
+        <!-- Group Sections (dinamicamente preenchido via JS) -->
+        <div id="groupsContainer" class="space-y-xl"></div>
+    </main>
+
+    <script>
+        // --------------------------------------------------------------
+        // DADOS COMPLETOS DAS FIGURINHAS (baseado na tabela fornecida)
+        // Organizados por seleção/pais, com código, nome e tipo foil
+        // --------------------------------------------------------------
+        const STICKERS_DB = [
+            // MEXICO
+            { code: "MEX1", name: "Emblema", country: "Mexico", foil: true },
+            { code: "MEX2", name: "Luis Malagón", country: "Mexico", foil: false },
+            { code: "MEX3", name: "Johan Vasquez", country: "Mexico", foil: false },
+            { code: "MEX4", name: "Jorge Sánchez", country: "Mexico", foil: false },
+            { code: "MEX5", name: "Cesar Montes", country: "Mexico", foil: false },
+            { code: "MEX6", name: "Jesus Gallardo", country: "Mexico", foil: false },
+            { code: "MEX7", name: "Israel Reyes", country: "Mexico", foil: false },
+            { code: "MEX8", name: "Diego Lainez", country: "Mexico", foil: false },
+            { code: "MEX9", name: "Carlos Rodriguez", country: "Mexico", foil: false },
+            { code: "MEX10", name: "Edson Alvarez", country: "Mexico", foil: false },
+            { code: "MEX11", name: "Orbelin Pineda", country: "Mexico", foil: false },
+            { code: "MEX12", name: "Marcel Ruiz", country: "Mexico", foil: false },
+            { code: "MEX13", name: "Foto do Time", country: "Mexico", foil: false },
+            { code: "MEX14", name: "Érick Sánchez", country: "Mexico", foil: false },
+            { code: "MEX15", name: "Hirving Lozano", country: "Mexico", foil: false },
+            { code: "MEX16", name: "Santiago Giménez", country: "Mexico", foil: false },
+            { code: "MEX17", name: "Raúl Jiménez", country: "Mexico", foil: false },
+            { code: "MEX18", name: "Alexis Vega", country: "Mexico", foil: false },
+            { code: "MEX19", name: "Roberto Alvarado", country: "Mexico", foil: false },
+            { code: "MEX20", name: "Cesar Huerta", country: "Mexico", foil: false },
+
+            // SOUTH AFRICA
+            { code: "RSA1", name: "Emblema", country: "South Africa", foil: true },
+            { code: "RSA2", name: "Ronwen Williams", country: "South Africa", foil: false },
+            { code: "RSA3", name: "Sipho Chaine", country: "South Africa", foil: false },
+            { code: "RSA4", name: "Aubrey Modiba", country: "South Africa", foil: false },
+            { code: "RSA5", name: "Samukele Kabini", country: "South Africa", foil: false },
+            { code: "RSA6", name: "Mbekezeli Mbokazi", country: "South Africa", foil: false },
+            { code: "RSA7", name: "Khulumani Ndamane", country: "South Africa", foil: false },
+            { code: "RSA8", name: "Siyabonga Ngezana", country: "South Africa", foil: false },
+            { code: "RSA9", name: "Khuliso Mudau", country: "South Africa", foil: false },
+            { code: "RSA10", name: "Nkosinathi Sibisi", country: "South Africa", foil: false },
+            { code: "RSA11", name: "Teboho Mokoena", country: "South Africa", foil: false },
+            { code: "RSA12", name: "Thalente Mbatha", country: "South Africa", foil: false },
+            { code: "RSA13", name: "Foto do Time", country: "South Africa", foil: false },
+            { code: "RSA14", name: "Bathasi Aubaas", country: "South Africa", foil: false },
+            { code: "RSA15", name: "Yaya Sithole", country: "South Africa", foil: false },
+            { code: "RSA16", name: "Sipho Mbule", country: "South Africa", foil: false },
+            { code: "RSA17", name: "Lyle Foster", country: "South Africa", foil: false },
+            { code: "RSA18", name: "Iqraam Rayners", country: "South Africa", foil: false },
+            { code: "RSA19", name: "Mohau Nkota", country: "South Africa", foil: false },
+            { code: "RSA20", name: "Oswin Appollis", country: "South Africa", foil: false },
+
+            // SOUTH KOREA
+            { code: "KOR1", name: "Emblema", country: "South Korea", foil: true },
+            { code: "KOR2", name: "Hyeon-woo Jo", country: "South Korea", foil: false },
+            { code: "KOR3", name: "Seung-Gyu Kim", country: "South Korea", foil: false },
+            { code: "KOR4", name: "Min-jae Kim", country: "South Korea", foil: false },
+            { code: "KOR5", name: "Yu-min Cho", country: "South Korea", foil: false },
+            { code: "KOR6", name: "Young-woo Seol", country: "South Korea", foil: false },
+            { code: "KOR7", name: "Han-beom Lee", country: "South Korea", foil: false },
+            { code: "KOR8", name: "Tae-seok Lee", country: "South Korea", foil: false },
+            { code: "KOR9", name: "Myung-jae Lee", country: "South Korea", foil: false },
+            { code: "KOR10", name: "Jae-sung Lee", country: "South Korea", foil: false },
+            { code: "KOR11", name: "In-beom Hwang", country: "South Korea", foil: false },
+            { code: "KOR12", name: "Kang-in Lee", country: "South Korea", foil: false },
+            { code: "KOR13", name: "Foto do Time", country: "South Korea", foil: false },
+            { code: "KOR14", name: "Seung-ho Paik", country: "South Korea", foil: false },
+            { code: "KOR15", name: "Jens Castrop", country: "South Korea", foil: false },
+            { code: "KOR16", name: "Dongg-yeong Lee", country: "South Korea", foil: false },
+            { code: "KOR17", name: "Gue-sung Cho", country: "South Korea", foil: false },
+            { code: "KOR18", name: "Heung-min Son", country: "South Korea", foil: false },
+            { code: "KOR19", name: "Hee-chan Hwang", country: "South Korea", foil: false },
+            { code: "KOR20", name: "Hyeon-Gyu Oh", country: "South Korea", foil: false },
+
+            // CZECHIA
+            { code: "CZE1", name: "Emblema", country: "Czechia", foil: true },
+            { code: "CZE2", name: "Matej Kovar", country: "Czechia", foil: false },
+            { code: "CZE3", name: "Jindrich Stanek", country: "Czechia", foil: false },
+            { code: "CZE4", name: "Ladislav Krejci", country: "Czechia", foil: false },
+            { code: "CZE5", name: "Vladimir Coufal", country: "Czechia", foil: false },
+            { code: "CZE6", name: "Jaroslav Zeleny", country: "Czechia", foil: false },
+            { code: "CZE7", name: "Tomas Holes", country: "Czechia", foil: false },
+            { code: "CZE8", name: "David Zima", country: "Czechia", foil: false },
+            { code: "CZE9", name: "Michal Sadilek", country: "Czechia", foil: false },
+            { code: "CZE10", name: "Lukas Provod", country: "Czechia", foil: false },
+            { code: "CZE11", name: "Lukas Cerv", country: "Czechia", foil: false },
+            { code: "CZE12", name: "Tomas Soucek", country: "Czechia", foil: false },
+            { code: "CZE13", name: "Foto do Time", country: "Czechia", foil: false },
+            { code: "CZE14", name: "Pavel Sulc", country: "Czechia", foil: false },
+            { code: "CZE15", name: "Matej Vydra", country: "Czechia", foil: false },
+            { code: "CZE16", name: "Vasil Kusej", country: "Czechia", foil: false },
+            { code: "CZE17", name: "Tomas Chory", country: "Czechia", foil: false },
+            { code: "CZE18", name: "Vaclav Cerny", country: "Czechia", foil: false },
+            { code: "CZE19", name: "Adam Hlozek", country: "Czechia", foil: false },
+            { code: "CZE20", name: "Patrik Schick", country: "Czechia", foil: false },
+
+            // CANADA
+            { code: "CAN1", name: "Emblema", country: "Canada", foil: true },
+            { code: "CAN2", name: "Dayne St.Clair", country: "Canada", foil: false },
+            { code: "CAN3", name: "Alphonso Davies", country: "Canada", foil: false },
+            { code: "CAN4", name: "Alistair Johnston", country: "Canada", foil: false },
+            { code: "CAN5", name: "Samuel Adekugbe", country: "Canada", foil: false },
+            { code: "CAN6", name: "Riche Larvea", country: "Canada", foil: false },
+            { code: "CAN7", name: "Derek Cornelius", country: "Canada", foil: false },
+            { code: "CAN8", name: "Moïse Bombito", country: "Canada", foil: false },
+            { code: "CAN9", name: "Kamal Miller", country: "Canada", foil: false },
+            { code: "CAN10", name: "Stephen Eustáquio", country: "Canada", foil: false },
+            { code: "CAN11", name: "Ismaël Koné", country: "Canada", foil: false },
+            { code: "CAN12", name: "Jonathan Osorio", country: "Canada", foil: false },
+            { code: "CAN13", name: "Foto do Time", country: "Canada", foil: false },
+            { code: "CAN14", name: "Jacob Shaffelburg", country: "Canada", foil: false },
+            { code: "CAN15", name: "Mathieu Choinière", country: "Canada", foil: false },
+            { code: "CAN16", name: "Niko Sigur", country: "Canada", foil: false },
+            { code: "CAN17", name: "Tajon Buchanan", country: "Canada", foil: false },
+            { code: "CAN18", name: "Liam Millar", country: "Canada", foil: false },
+            { code: "CAN19", name: "Cyle Larin", country: "Canada", foil: false },
+            { code: "CAN20", name: "Jonathan David", country: "Canada", foil: false },
+
+            // BRAZIL
+            { code: "BRA1", name: "Emblema", country: "Brazil", foil: true },
+            { code: "BRA2", name: "Alisson", country: "Brazil", foil: false },
+            { code: "BRA3", name: "Bento", country: "Brazil", foil: false },
+            { code: "BRA4", name: "Marquinhos", country: "Brazil", foil: false },
+            { code: "BRA5", name: "Éder Militão", country: "Brazil", foil: false },
+            { code: "BRA6", name: "Gabriel Magalhães", country: "Brazil", foil: false },
+            { code: "BRA7", name: "Danilo", country: "Brazil", foil: false },
+            { code: "BRA8", name: "Wesley", country: "Brazil", foil: false },
+            { code: "BRA9", name: "Lucas Paquetá", country: "Brazil", foil: false },
+            { code: "BRA10", name: "Casemiro", country: "Brazil", foil: false },
+            { code: "BRA11", name: "Bruno Guimarães", country: "Brazil", foil: false },
+            { code: "BRA12", name: "Luiz Henrique", country: "Brazil", foil: false },
+            { code: "BRA13", name: "Foto do Time", country: "Brazil", foil: false },
+            { code: "BRA14", name: "Vinicius Júnior", country: "Brazil", foil: false },
+            { code: "BRA15", name: "Rodrygo", country: "Brazil", foil: false },
+            { code: "BRA16", name: "João Pedro", country: "Brazil", foil: false },
+            { code: "BRA17", name: "Matheus Cunha", country: "Brazil", foil: false },
+            { code: "BRA18", name: "Gabriel Martinelli", country: "Brazil", foil: false },
+            { code: "BRA19", name: "Raphinha", country: "Brazil", foil: false },
+            { code: "BRA20", name: "Estêvão", country: "Brazil", foil: false },
+
+            // ARGENTINA
+            { code: "ARG1", name: "Emblema", country: "Argentina", foil: true },
+            { code: "ARG2", name: "Emiliano Martinez", country: "Argentina", foil: false },
+            { code: "ARG3", name: "Nahuel Molina", country: "Argentina", foil: false },
+            { code: "ARG4", name: "Cristian Romero", country: "Argentina", foil: false },
+            { code: "ARG5", name: "Nicolas Otamendi", country: "Argentina", foil: false },
+            { code: "ARG6", name: "Nicolas Tagliafico", country: "Argentina", foil: false },
+            { code: "ARG7", name: "Leonardo Balerdi", country: "Argentina", foil: false },
+            { code: "ARG8", name: "Enzo Fernandez", country: "Argentina", foil: false },
+            { code: "ARG9", name: "Alexis Mac Allister", country: "Argentina", foil: false },
+            { code: "ARG10", name: "Rodrigo De Paul", country: "Argentina", foil: false },
+            { code: "ARG11", name: "Exequiel Palacios", country: "Argentina", foil: false },
+            { code: "ARG12", name: "Leandro Paredes", country: "Argentina", foil: false },
+            { code: "ARG13", name: "Foto do Time", country: "Argentina", foil: false },
+            { code: "ARG14", name: "Nico Paz", country: "Argentina", foil: false },
+            { code: "ARG15", name: "Franco Mastantuono", country: "Argentina", foil: false },
+            { code: "ARG16", name: "Nico Gonzalez", country: "Argentina", foil: false },
+            { code: "ARG17", name: "Lionel Messi", country: "Argentina", foil: false },
+            { code: "ARG18", name: "Lautaro Martinez", country: "Argentina", foil: false },
+            { code: "ARG19", name: "Julian Alvarez", country: "Argentina", foil: false },
+            { code: "ARG20", name: "Giuliano Simeone", country: "Argentina", foil: false },
+
+            // PORTUGAL
+            { code: "POR1", name: "Emblema", country: "Portugal", foil: true },
+            { code: "POR2", name: "Diogo Costa", country: "Portugal", foil: false },
+            { code: "POR3", name: "Jose Sa", country: "Portugal", foil: false },
+            { code: "POR4", name: "Ruben Dias", country: "Portugal", foil: false },
+            { code: "POR5", name: "João Cancelo", country: "Portugal", foil: false },
+            { code: "POR6", name: "Diogo Dalot", country: "Portugal", foil: false },
+            { code: "POR7", name: "Nuno Mendes", country: "Portugal", foil: false },
+            { code: "POR8", name: "Gonçalo Inácio", country: "Portugal", foil: false },
+            { code: "POR9", name: "Bernardo Silva", country: "Portugal", foil: false },
+            { code: "POR10", name: "Bruno Fernandes", country: "Portugal", foil: false },
+            { code: "POR11", name: "Ruben Neves", country: "Portugal", foil: false },
+            { code: "POR12", name: "Vitinha", country: "Portugal", foil: false },
+            { code: "POR13", name: "Foto do Time", country: "Portugal", foil: false },
+            { code: "POR14", name: "João Neves", country: "Portugal", foil: false },
+            { code: "POR15", name: "Cristiano Ronaldo", country: "Portugal", foil: false },
+            { code: "POR16", name: "Francisco Trincao", country: "Portugal", foil: false },
+            { code: "POR17", name: "João Felix", country: "Portugal", foil: false },
+            { code: "POR18", name: "Gonçalo Ramos", country: "Portugal", foil: false },
+            { code: "POR19", name: "Pedro Neto", country: "Portugal", foil: false },
+            { code: "POR20", name: "Rafael Leão", country: "Portugal", foil: false },
+
+            // ENGLAND
+            { code: "ENG1", name: "Emblema", country: "England", foil: true },
+            { code: "ENG2", name: "Jordan Pickford", country: "England", foil: false },
+            { code: "ENG3", name: "John Stones", country: "England", foil: false },
+            { code: "ENG4", name: "Marc Guéhi", country: "England", foil: false },
+            { code: "ENG5", name: "Ezri Konsa", country: "England", foil: false },
+            { code: "ENG6", name: "Trent Alexander-Arnold", country: "England", foil: false },
+            { code: "ENG7", name: "Reece James", country: "England", foil: false },
+            { code: "ENG8", name: "Dan Burn", country: "England", foil: false },
+            { code: "ENG9", name: "Jordan Henderson", country: "England", foil: false },
+            { code: "ENG10", name: "Declan Rice", country: "England", foil: false },
+            { code: "ENG11", name: "Jude Bellingham", country: "England", foil: false },
+            { code: "ENG12", name: "Cole Palmer", country: "England", foil: false },
+            { code: "ENG13", name: "Foto do Time", country: "England", foil: false },
+            { code: "ENG14", name: "Morgan Rogers", country: "England", foil: false },
+            { code: "ENG15", name: "Anthony Gordon", country: "England", foil: false },
+            { code: "ENG16", name: "Phil Foden", country: "England", foil: false },
+            { code: "ENG17", name: "Bukayo Saka", country: "England", foil: false },
+            { code: "ENG18", name: "Harry Kane", country: "England", foil: false },
+            { code: "ENG19", name: "Marcus Rashford", country: "England", foil: false },
+            { code: "ENG20", name: "Ollie Watkins", country: "England", foil: false },
+
+            // FRANCE
+            { code: "FRA1", name: "Emblema", country: "France", foil: true },
+            { code: "FRA2", name: "Mike Maignan", country: "France", foil: false },
+            { code: "FRA3", name: "Theo Hernandez", country: "France", foil: false },
+            { code: "FRA4", name: "William Saliba", country: "France", foil: false },
+            { code: "FRA5", name: "Jules Kounde", country: "France", foil: false },
+            { code: "FRA6", name: "Ibrahima Konate", country: "France", foil: false },
+            { code: "FRA7", name: "Dayot Upamecano", country: "France", foil: false },
+            { code: "FRA8", name: "Lucas Digne", country: "France", foil: false },
+            { code: "FRA9", name: "Aurélien Tchouaméni", country: "France", foil: false },
+            { code: "FRA10", name: "Eduardo Camavinga", country: "France", foil: false },
+            { code: "FRA11", name: "Manu Kone", country: "France", foil: false },
+            { code: "FRA12", name: "Adrien Rabiot", country: "France", foil: false },
+            { code: "FRA13", name: "Foto do Time", country: "France", foil: false },
+            { code: "FRA14", name: "Michael Olise", country: "France", foil: false },
+            { code: "FRA15", name: "Ousmane Dembele", country: "France", foil: false },
+            { code: "FRA16", name: "Bradley Barcola", country: "France", foil: false },
+            { code: "FRA17", name: "Désiré Doué", country: "France", foil: false },
+            { code: "FRA18", name: "Kingsley Coman", country: "France", foil: false },
+            { code: "FRA19", name: "Hugo Ekitike", country: "France", foil: false },
+            { code: "FRA20", name: "Kylian Mbappe", country: "France", foil: false },
+
+            // ITENS ESPECIAIS (FOIL - Eventos, Emblemas, etc.)
+            { code: "00", name: "Panini Logo", country: "We Are Panini", foil: true },
+            { code: "FWC1", name: "Official Emblem", country: "FIFA World Cup 2026", foil: true },
+            { code: "FWC2", name: "Official Emblem", country: "FIFA World Cup 2026", foil: true },
+            { code: "FWC3", name: "Official Mascots", country: "FIFA World Cup 2026", foil: true },
+            { code: "FWC4", name: "Official Slogan", country: "FIFA World Cup 2026", foil: true },
+            { code: "FWC5", name: "Official Ball", country: "FIFA World Cup 2026", foil: true },
+            { code: "FWC6", name: "Canada", country: "Host Countries and Cities", foil: true },
+            { code: "FWC7", name: "Mexico", country: "Host Countries and Cities", foil: true },
+            { code: "FWC8", name: "USA", country: "Host Countries and Cities", foil: true },
+            { code: "FWC9", name: "Italy 1934", country: "FIFA World Cup History", foil: true },
+            { code: "FWC10", name: "Uruguay 1950", country: "FIFA World Cup History", foil: true },
+            { code: "FWC11", name: "West Germany 1954", country: "FIFA World Cup History", foil: true },
+            { code: "FWC12", name: "Brazil 1962", country: "FIFA World Cup History", foil: true },
+            { code: "FWC13", name: "West Germany 1974", country: "FIFA World Cup History", foil: true },
+            { code: "FWC14", name: "Argentina 1986", country: "FIFA World Cup History", foil: true },
+            { code: "FWC15", name: "Brazil 1994", country: "FIFA World Cup History", foil: true },
+            { code: "FWC16", name: "Brazil 2002", country: "FIFA World Cup History", foil: true },
+            { code: "FWC17", name: "Italy 2006", country: "FIFA World Cup History", foil: true },
+            { code: "FWC18", name: "Germany 2014", country: "FIFA World Cup History", foil: true },
+            { code: "FWC19", name: "Argentina 2022", country: "FIFA World Cup History", foil: true },
+
+            // EXTRA CARDS (Coca Cola / Special Editions)
+            { code: "CC-LAM1", name: "Lamine Yamal", country: "Spain", foil: false },
+            { code: "CC-LAM2", name: "Joshua Kimmich", country: "Germany", foil: false },
+            { code: "CC-LAM3", name: "Harry Kane", country: "England", foil: false },
+            { code: "CC-LAM4", name: "Santiago Giménez", country: "Mexico", foil: false },
+            { code: "CC-LAM5", name: "Josko Gvardiol", country: "Croatia", foil: false },
+            { code: "CC-LAM6", name: "Federico Valverde", country: "Uruguay", foil: false },
+            { code: "CC-LAM7", name: "Jefferson Lerma", country: "Colombia", foil: false },
+            { code: "CC-LAM8", name: "Enner Valencia", country: "Ecuador", foil: false },
+            { code: "CC-LAM9", name: "Gabriel Magalhães", country: "Brazil", foil: false },
+            { code: "CC-LAM10", name: "Virgil van Dijk", country: "Netherlands", foil: false },
+            { code: "CC-LAM11", name: "Alphonso Davies", country: "Canada", foil: false },
+            { code: "CC-LAM12", name: "Emiliano Martinez", country: "Argentina", foil: false },
+            { code: "CC-LAM13", name: "Raúl Jiménez", country: "Mexico", foil: false },
+            { code: "CC-LAM14", name: "Lautaro Martínez", country: "Argentina", foil: false },
+            { code: "CC-SRB1", name: "Lautaro Martínez", country: "Argentina", foil: false },
+            { code: "CC-SRB2", name: "Alphonso Davies", country: "Canada", foil: false },
+            { code: "CC-SRB3", name: "Josko Gvardiol", country: "Croatia", foil: false },
+            { code: "CC-SRB4", name: "Harry Kane", country: "England", foil: false },
+            { code: "CC-SRB5", name: "Eduardo Camavinga", country: "France", foil: false },
+            { code: "CC-SRB6", name: "William Saliba", country: "France", foil: false },
+            { code: "CC-SRB7", name: "Joshua Kimmich", country: "Germany", foil: false },
+            { code: "CC-SRB8", name: "Raúl Jiménez", country: "Mexico", foil: false },
+            { code: "CC-SRB9", name: "Virgil van Dijk", country: "Netherlands", foil: false },
+            { code: "CC-SRB10", name: "Lamine Yamal", country: "Spain", foil: false },
+            { code: "CC-SRB11", name: "Antonee Robinson", country: "USA", foil: false },
+            { code: "CC-SRB12", name: "Federico Valverde", country: "Uruguay", foil: false },
+            { code: "CC-ESP1", name: "Lamine Yamal", country: "Spain", foil: false },
+            { code: "CC-ESP2", name: "Joshua Kimmich", country: "Germany", foil: false },
+            { code: "CC-ESP3", name: "Eduardo Camavinga", country: "France", foil: false },
+            { code: "CC-ESP4", name: "Josko Gvardiol", country: "Croatia", foil: false },
+            { code: "CC-ESP5", name: "Federico Valverde", country: "Uruguay", foil: false },
+            { code: "CC-ESP6", name: "Virgil van Dijk", country: "Netherlands", foil: false },
+            { code: "CC-ESP7", name: "Alphonso Davies", country: "Canada", foil: false },
+            { code: "CC-ESP8", name: "Raúl Jiménez", country: "Mexico", foil: false },
+            { code: "CC-ESP9", name: "William Saliba", country: "France", foil: false },
+            { code: "CC-ESP10", name: "Lautaro Martínez", country: "Argentina", foil: false },
+            { code: "CC-ESP11", name: "Harry Kane", country: "England", foil: false },
+            { code: "CC-ESP12", name: "Antonee Robinson", country: "USA", foil: false },
+            { code: "CC-US1", name: "Lamine Yamal", country: "Spain", foil: false },
+            { code: "CC-US2", name: "Joshua Kimmich", country: "Germany", foil: false },
+            { code: "CC-US3", name: "Harry Kane", country: "England", foil: false },
+            { code: "CC-US4", name: "Santiago Giménez", country: "Mexico", foil: false },
+            { code: "CC-US5", name: "Antonee Robinson", country: "USA", foil: false },
+            { code: "CC-US6", name: "Jefferson Lerma", country: "Colombia", foil: false },
+            { code: "CC-US7", name: "Edson Álvarez", country: "Mexico", foil: false },
+            { code: "CC-US8", name: "Virgil van Dijk", country: "Netherlands", foil: false },
+            { code: "CC-US9", name: "Alphonso Davies", country: "Canada", foil: false },
+            { code: "CC-US10", name: "Weston McKennie", country: "USA", foil: false },
+            { code: "CC-US11", name: "Lautaro Martínez", country: "Argentina", foil: false },
+            { code: "CC-US12", name: "Gabriel Magalhães", country: "Brazil", foil: false },
+
+            // EXTRA / BASE Cards
+            { code: "LM", name: "Lionel Messi", country: "Argentina", foil: false },
+            { code: "JD", name: "Jérémy Doku", country: "Belgium", foil: false },
+            { code: "VJ", name: "Vinicius Júnior", country: "Brazil", foil: false },
+            { code: "AD", name: "Alphonso Davies", country: "Canada", foil: false },
+            { code: "LD", name: "Luis Díaz", country: "Colombia", foil: false },
+            { code: "LMO", name: "Luka Modrić", country: "Croatia", foil: false },
+            { code: "MC", name: "Moisés Caicedo", country: "Ecuador", foil: false },
+            { code: "MS", name: "Mohamed Salah", country: "Egypt", foil: false },
+            { code: "JB", name: "Jude Bellingham", country: "England", foil: false },
+            { code: "KM", name: "Kylian Mbappé", country: "France", foil: false },
+            { code: "FW", name: "Florian Wirtz", country: "Germany", foil: false },
+            { code: "RJ", name: "Raúl Jiménez", country: "Mexico", foil: false },
+            { code: "AH", name: "Achraf Hakimi", country: "Morocco", foil: false },
+            { code: "EH", name: "Erling Haaland", country: "Norway", foil: false },
+            { code: "RL", name: "Robert Lewandowski", country: "Poland", foil: false },
+            { code: "CR", name: "Cristiano Ronaldo", country: "Portugal", foil: false },
+            { code: "HS", name: "Heung-min Son", country: "South Korea", foil: false },
+            { code: "LY", name: "Lamine Yamal", country: "Spain", foil: false },
+            { code: "CP", name: "Christian Pulisic", country: "USA", foil: false },
+            { code: "FV", name: "Federico Valverde", country: "Uruguay", foil: false }
+        ];
+
+        // Estado do album: cada sticker recebe status (collected ou missing)
+        let stickers = STICKERS_DB.map(s => ({ ...s, status: "missing" }));
+
+        // Filtros ativos
+        let searchQuery = "";
+        let showOnlyMissing = false;
+        let showOnlyFoil = false;
+
+        // Carregar do localStorage
+        function loadFromStorage() {
+            const saved = localStorage.getItem("copa2026_album_status");
+            if (saved) {
+                try {
+                    const statusMap = JSON.parse(saved);
+                    stickers.forEach(s => {
+                        if (statusMap[s.code] === "collected") s.status = "collected";
+                        else s.status = "missing";
+                    });
+                } catch (e) { }
+            }
+        }
+
+        function saveToStorage() {
+            const statusMap = {};
+            stickers.forEach(s => { statusMap[s.code] = s.status; });
+            localStorage.setItem("copa2026_album_status", JSON.stringify(statusMap));
+        }
+
+        // Alternar status
+        function toggleStatus(sticker) {
+            if (sticker.status === "collected") {
+                sticker.status = "missing";
+            } else {
+                sticker.status = "collected";
+            }
+            saveToStorage();
+            updateProgressAndRender();
+        }
+
+        // Atualizar estatísticas e re-renderizar
+        function updateProgressAndRender() {
+            const total = stickers.length;
+            const collected = stickers.filter(s => s.status === "collected").length;
+            const percent = total === 0 ? 0 : Math.round((collected / total) * 100);
+            document.getElementById("progressPercent").innerText = `${percent}%`;
+            document.getElementById("progressText").innerHTML = `${collected} / ${total} colecionadas`;
+            document.getElementById("progressFill").style.width = `${percent}%`;
+            renderGroups();
+        }
+
+        // Obter stickers filtrados
+        function getFilteredStickers() {
+            let filtered = [...stickers];
+            if (searchQuery.trim() !== "") {
+                const term = searchQuery.trim().toLowerCase();
+                filtered = filtered.filter(s => s.name.toLowerCase().includes(term) || s.code.toLowerCase().includes(term));
+            }
+            if (showOnlyMissing) {
+                filtered = filtered.filter(s => s.status === "missing");
+            }
+            if (showOnlyFoil) {
+                filtered = filtered.filter(s => s.foil === true);
+            }
+            return filtered;
+        }
+
+        // Renderizar grupos (seleções) dinamicamente
+        function renderGroups() {
+            const filteredStickers = getFilteredStickers();
+            // Agrupar por país
+            const groups = new Map();
+            filteredStickers.forEach(s => {
+                if (!groups.has(s.country)) groups.set(s.country, []);
+                groups.get(s.country).push(s);
+            });
+            // Ordenar países
+            const sortedCountries = Array.from(groups.keys()).sort();
+            const container = document.getElementById("groupsContainer");
+            if (!container) return;
+            if (sortedCountries.length === 0) {
+                container.innerHTML = `<div class="text-center py-12 text-white/50">Nenhuma figurinha encontrada</div>`;
+                return;
+            }
+            let html = "";
+            for (let country of sortedCountries) {
+                const countryStickers = groups.get(country);
+                const totalInCountry = countryStickers.length;
+                const collectedInCountry = countryStickers.filter(s => s.status === "collected").length;
+                html += `
+        <section class="space-y-gutter">
+          <div class="flex items-center gap-sm border-b-2 border-white pb-xs">
+            <h3 class="font-display-xl text-headline-lg italic uppercase text-[#ADFF2F]">${country}</h3>
+            <span class="font-body-lg text-white opacity-50">${collectedInCountry} / ${totalInCountry}</span>
+          </div>
+          <div class="sticker-card-grid">
+      `;
+                for (let sticker of countryStickers) {
+                    const isCollected = sticker.status === "collected";
+                    const isFoil = sticker.foil;
+                    // Determinar estilos
+                    let cardClasses = "flex flex-col justify-between min-h-[140px] transition-all ";
+                    let borderStyle = "";
+                    let buttonClasses = "";
+                    let buttonText = "";
+                    let iconHtml = "";
+                    if (isCollected) {
+                        cardClasses += "bg-surface-container border-2 border-[#ADFF2F]";
+                        buttonClasses = "w-full bg-[#ADFF2F] text-black py-2 font-headline-md text-[10px] uppercase font-black border border-black mt-sm";
+                        buttonText = "COLECIONADA";
+                        if (isFoil) {
+                            iconHtml = `<span class="material-symbols-outlined text-[#ADFF2F] text-sm" data-weight="fill">bolt</span>`;
+                        } else {
+                            iconHtml = `<span class="material-symbols-outlined text-[#ADFF2F] text-sm" data-weight="fill">check_circle</span>`;
+                        }
+                    } else {
+                        cardClasses += "bg-surface-container-low border-2 border-dashed border-outline-variant opacity-70 hover:opacity-100";
+                        buttonClasses = "w-full bg-transparent text-white border-2 border-white py-2 font-headline-md text-[10px] uppercase hover:bg-white hover:text-black transition-colors mt-sm";
+                        buttonText = "MARCAR POSSUO";
+                        if (isFoil) {
+                            iconHtml = `<span class="material-symbols-outlined text-outline text-sm">bolt</span>`;
+                        } else {
+                            iconHtml = "";
+                        }
+                    }
+                    html += `
+          <div class="${cardClasses}" data-code="${sticker.code}">
+            <div>
+              <div class="flex justify-between items-start">
+                <span class="font-headline-md text-label-sm ${isCollected ? 'text-[#ADFF2F]' : 'text-outline'}">${sticker.code}</span>
+                ${iconHtml}
+              </div>
+              <p class="font-headline-md text-body-md text-white uppercase mt-xs">${escapeHtml(sticker.name)}</p>
+            </div>
+            <button class="${buttonClasses}" data-code="${sticker.code}">${buttonText}</button>
+          </div>
+        `;
+                }
+                html += `</div></section>`;
+            }
+            container.innerHTML = html;
+            // Adicionar eventos aos botões
+            document.querySelectorAll(".sticker-card-grid button").forEach(btn => {
+                btn.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    const code = btn.getAttribute("data-code");
+                    const sticker = stickers.find(s => s.code === code);
+                    if (sticker) {
+                        toggleStatus(sticker);
+                    }
+                });
+            });
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/[&<>]/g, m => m === "&" ? "&amp;" : m === "<" ? "&lt;" : "&gt;");
+        }
+
+        // Resetar album
+        function resetAlbum() {
+            if (confirm("Resetar álbum? Todas as figurinhas voltarão como 'faltando'.")) {
+                stickers.forEach(s => s.status = "missing");
+                saveToStorage();
+                searchQuery = "";
+                showOnlyMissing = false;
+                showOnlyFoil = false;
+                document.getElementById("searchInput").value = "";
+                updateProgressAndRender();
+            }
+        }
+
+        // Eventos e inicialização
+        document.addEventListener("DOMContentLoaded", () => {
+            loadFromStorage();
+            updateProgressAndRender();
+
+            const searchInput = document.getElementById("searchInput");
+            const missingBtn = document.getElementById("missingFilterBtn");
+            const foilBtn = document.getElementById("foilFilterBtn");
+            const clearBtn = document.getElementById("clearFiltersBtn");
+            const resetBtn = document.getElementById("resetAlbumBtn");
+
+            searchInput.addEventListener("input", (e) => {
+                searchQuery = e.target.value;
+                renderGroups();
+            });
+            missingBtn.addEventListener("click", () => {
+                showOnlyMissing = true;
+                showOnlyFoil = false;
+                renderGroups();
+            });
+            foilBtn.addEventListener("click", () => {
+                showOnlyFoil = true;
+                showOnlyMissing = false;
+                renderGroups();
+            });
+            clearBtn.addEventListener("click", () => {
+                searchQuery = "";
+                showOnlyMissing = false;
+                showOnlyFoil = false;
+                searchInput.value = "";
+                renderGroups();
+            });
+            resetBtn.addEventListener("click", resetAlbum);
+        });
+    </script>
+</body>
+
+</html>
